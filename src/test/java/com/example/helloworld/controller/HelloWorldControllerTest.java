@@ -33,7 +33,7 @@ class HelloWorldControllerTest {
     @Test
     void testGetHelloWorld() throws Exception {
         // Given
-        HelloWorld expectedHelloWorld = new HelloWorld("param1", "param2");
+        HelloWorld expectedHelloWorld = new HelloWorld("Hello", "Teste");
         when(service.getHelloWorld()).thenReturn(expectedHelloWorld);
 
         // When/Then
