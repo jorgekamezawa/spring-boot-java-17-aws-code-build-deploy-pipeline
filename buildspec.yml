@@ -9,7 +9,8 @@ phases:
       - echo Logging in to Amazon ECR...
 #      - echo $DOCKER_HUB_PASSWORD | docker login --username $DOCKER_HUB_USERNAME --password-stdin
 #      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-      - aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email
+#      - aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - chmod +x gradlew
   build:
     commands:
