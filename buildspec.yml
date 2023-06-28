@@ -7,10 +7,12 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-#      - echo $DOCKER_HUB_PASSWORD | docker login --username $DOCKER_HUB_USERNAME --password-stdin
-#      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-#      - aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email
+      - aws --version
+      - echo $AWS_DEFAULT_REGION
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI=137680714831.dkr.ecr.sa-east-1.amazonaws.com/aulaecr
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
       - chmod +x gradlew
   build:
     commands:
